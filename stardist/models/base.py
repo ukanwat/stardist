@@ -487,8 +487,6 @@ class StarDistBase(BaseModel):
                     )
                     threshs["nms"] = None
 
-                weights_path = str(self.logdir / "weights_last.h5")
-
             except FileNotFoundError:
                 if config is None and len(tuple(self.logdir.glob("*.h5"))) > 0:
                     print(
@@ -501,10 +499,11 @@ class StarDistBase(BaseModel):
             nms=0.4 if threshs["nms"] is None else threshs["nms"],
         )
         print(
-            "Using default values: prob_thresh={prob:g}, nms_thresh={nms:g}.".format(
+            "Using dtefaul values: prob_thresh={prob:g}, nms_thresh={nms:g}.".format(
                 prob=self.thresholds.prob, nms=self.thresholds.nms
             )
         )
+        weights_path = str(self.logdir / "weights_last.h5")
         print(weights_path)
         if os.path.exists(weights_path):
             self.keras_model.load_weights(weights_path)
