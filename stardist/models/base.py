@@ -294,18 +294,18 @@ def compound_tversky_cce(weights, ndim, alpha=0.7, gamma=0):
         # ----------------------------------
 
         ## CoNSeP -------------------------
-        rep_list = [10, 11, 12]
-        add_list = [9, 10, 11, 12]
-        y_pred = add_pred_vals(y_pred, add_list, rep_list)
-        rep_list = [4, 5, 6, 7]
-        add_list = [3, 4, 5, 6, 7]
-        y_pred = add_pred_vals(y_pred, add_list, rep_list)
+        # rep_list = [10, 11, 12]
+        # add_list = [9, 10, 11, 12]
+        # y_pred = add_pred_vals(y_pred, add_list, rep_list)
+        # rep_list = [4, 5, 6, 7]
+        # add_list = [3, 4, 5, 6, 7]
+        # y_pred = add_pred_vals(y_pred, add_list, rep_list)
         ## --------------------------------
 
         ## PanNuke -----------------------------
-        #         rep_list = [4,5,6,7,8,12]
-        #         add_list = [3,4,5,6,7]
-        #         y_pred = add_pred_vals(y_pred, add_list, rep_list)
+        rep_list = [4,5,6,7,8,12]
+        add_list = [3,4,5,6,7]
+        y_pred = add_pred_vals(y_pred, add_list, rep_list)
         ## ---------------------------------------
 
         ## CoNuSAC -----------------------------
@@ -891,18 +891,18 @@ class StarDistBase(BaseModel):
         # ----------------------------------
 
         ## CoNSeP -------------------------
-        rep_list = [10, 11, 12]
-        add_list = [9, 10, 11, 12]
-        result[2] = out_add_pred_vals(result[2], add_list, rep_list)
-        rep_list = [4, 5, 6, 7]
-        add_list = [3, 4, 5, 6, 7]
-        result[2] = out_add_pred_vals(result[2], add_list, rep_list)
+        # rep_list = [10, 11, 12]
+        # add_list = [9, 10, 11, 12]
+        # result[2] = out_add_pred_vals(result[2], add_list, rep_list)
+        # rep_list = [4, 5, 6, 7]
+        # add_list = [3, 4, 5, 6, 7]
+        # result[2] = out_add_pred_vals(result[2], add_list, rep_list)
         ## --------------------------------
 
         ## PanNuke -----------------------------
-        #         rep_list = [4,5,6,7,8,12]
-        #         add_list = [3,4,5,6,7]
-        #         result[2] = out_add_pred_vals(result[2], add_list, rep_list)
+        rep_list = [4,5,6,7,8,12]
+        add_list = [3,4,5,6,7]
+        result[2] = out_add_pred_vals(result[2], add_list, rep_list)
         ## ---------------------------------------
 
         ## CoNuSAC -----------------------------
