@@ -10,7 +10,7 @@ from pathlib import Path
 import threading
 import scipy.ndimage as ndi
 import numbers
-
+from datetime import datetime
 from csbdeep.models.base_model import BaseModel
 from csbdeep.utils.tf import export_SavedModel, keras_import, IS_TF_1, CARETensorBoard
 
@@ -49,6 +49,29 @@ def set_config_values(add_lists, rep_lists):
     add_channel_lists = add_lists
     rep_channel_lists = rep_lists
     
+
+
+
+
+
+
+def rename_file_with_timestamp(file_path):
+    if not os.path.exists(file_path):
+        print(f"File '{file_path}' does not exist.")
+        return
+    file_dir = os.path.dirname(file_path)
+    file_name, file_extension = os.path.splitext(os.path.basename(file_path))
+
+    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+    new_file_name = f"{file_name}_{timestamp}{file_extension}"
+    print(new_file_name)
+
+    new_file_path = os.path.join(file_dir, new_file_name)
+    os.rename(file_path, new_file_path)
+    if os.path.exists(new_file_path):
+        print(f"File renamed successfully. New file path: {new_file_path}")
+    else:
+        print("File renaming failed.")
 
 
 
@@ -527,6 +550,7 @@ class StarDistBase(BaseModel):
         if os.path.exists(weights_path):
             self.keras_model.load_weights(weights_path)
             print("Weights loaded successfully.")
+            rename_file_with_timestamp(weights_path)
 
     @property
     def thresholds(self):
