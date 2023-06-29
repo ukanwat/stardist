@@ -41,6 +41,18 @@ from ..utils import _is_power_of_2, _is_floatarray, optimize_threshold
 
 # TODO: helper function to check if receptive field of cnn is sufficient for object sizes in GT
 
+add_channel_lists=[]
+rep_channel_lists=[]
+
+def set_config_values(add_lists, rep_lists):
+    global add_channel_lists, rep_channel_lists
+    add_channel_lists = add_lists
+    rep_channel_lists = rep_lists
+    
+
+
+
+
 
 def generic_masked_loss(
     mask, loss, weights=1, norm_by_mask=True, reg_weight=0, reg_penalty=K.abs
@@ -312,10 +324,14 @@ def compound_tversky_cce(weights, ndim, alpha=0.7, gamma=0):
         ## ---------------------------------------
 
         ## CoNuSAC -----------------------------
-        rep_list = [2,6,7,8,9,10,11,12]
-        add_list = [1,2]
-        y_pred = add_pred_vals(y_pred, add_list, rep_list)
+        # rep_list = [2,6,7,8,9,10,11,12]
+        # add_list = [1,2]
+        # y_pred = add_pred_vals(y_pred, add_list, rep_list)
         ## ---------------------------------------
+        for idx, add_list in enumerate(add_channel_lists):
+            y_pred = add_pred_vals(y_pred, add_list, rep_channel_lists[idx])
+
+        
 
         return K.mean(_cce(y_true, y_pred)) + K.mean(_tversky(y_true, y_pred))
 
@@ -916,6 +932,8 @@ class StarDistBase(BaseModel):
         add_list = [1,2]
         result[2] = out_add_pred_vals(result[2], add_list, rep_list)
         ## ---------------------------------------
+        for idx, add_list in enumerate(add_channel_lists):
+            result[2] = out_add_pred_vals(result[2], add_list, rep_channel_lists[idx])
 
         # print(result[2].shape)
 
