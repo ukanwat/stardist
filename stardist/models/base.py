@@ -550,7 +550,7 @@ class StarDistBase(BaseModel):
         if os.path.exists(weights_path):
             self.keras_model.load_weights(weights_path)
             print("Weights loaded successfully.")
-            rename_file_with_timestamp(weights_path)
+            # rename_file_with_timestamp(weights_path)
 
     @property
     def thresholds(self):
