@@ -291,9 +291,20 @@ class Custom:
 
         from .benchmark import matching_dataset
 
+        import time
+
+        # starting time
+        start = time.time()
+
         pred_masks = self.predict_masks(
             X, StarDist2D(None, name=name, basedir="./models")
         )
+
+        # starting time
+        end = time.time()
+
+        print(f"time taken: {end - start}")
+
         # use correct threshold
         result = matching_dataset(
             Y,
