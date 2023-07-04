@@ -41,11 +41,9 @@ class Custom:
         # "/content/drive/MyDrive/jrf/datasets/lizard-patch-level-modified"
         # /content/drive/MyDrive/jrf/datasets/pannuke/
         # /content/drive/MyDrive/jrf/stardist/MoNuSAC/
-
         args.oversample = True  # oversample training patches with rare classes
         args.frac_val = 0.1  # fraction of data used for validation during training
         args.seed = None  # for reproducible train/val data sets
-
         # model out (parameters as used for our challenge submissions)
         args.modeldir = "./models"
         args.epochs = 20
@@ -234,7 +232,8 @@ class Custom:
             augmenter = None
 
         self.args.epochs = epochs
-        Xv, Yv, Y0v, idxv = self.train_dataset(name, dir, config)
+        Xv, Yv, Y0v, idxv = self.train_dataset(name, dir, config[0], config[1])
+        return Xv, Yv, Y0v, idxv
 
         # base.set_config_values([ [9, 10, 11, 12]]  ,[[2, 4, 8, 10, 11, 12]])
 
