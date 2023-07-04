@@ -421,6 +421,41 @@ def rot90(x, k=1, roll=True):
     return z
 
 
+def scale5(x):
+    scale_factor = np.random.uniform(
+        1, 1.05
+    )  # Generate a random scale factor between 0.95 and 1.05
+    return x * scale_factor
+
+
+def color_jitter_augmentation(image):
+    import albumentations as A
+
+    # Define the color jitter transformation
+    transform = A.Compose(
+        [
+            A.OneOf(
+                [
+                    A.RandomBrightness(limit=0.2),
+                    A.RandomContrast(limit=0.2),
+                    A.RandomGamma(gamma_limit=(80, 120)),
+                    A.ColorJitter(
+                        brightness=0.2, contrast=0.2, saturation=0.2, hue=0.2
+                    ),
+                ],
+                p=0.8,
+            ),
+            A.ToFloat(max_value=1.0),
+        ]
+    )
+
+    # Apply the transformation to the image
+    augmented = transform(image=image)
+    augmented_image = augmented["image"]
+
+    return augmented_image
+
+
 def flip(x, doit=True, reverse=True):
     """Flip stardist cnn predictions."""
     assert x.ndim in (2, 3)

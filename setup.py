@@ -106,6 +106,7 @@ setup(
         "Programming Language :: Python :: 3.9",
     ],
     install_requires=[
+        "albumentations",
         "csbdeep>=0.6.3",
         "scikit-image",
         "numba",
