@@ -16,9 +16,9 @@ from sklearn.model_selection import train_test_split
 from stardist import gputools_available
 from stardist.models import Config2D, StarDist2D
 
-from conic import get_data, oversample_classes, CLASS_NAMES
+from .conic import get_data, oversample_classes, CLASS_NAMES
 
-from conic import HEStaining, HueBrightnessSaturation
+from .conic import HEStaining, HueBrightnessSaturation
 from augmend import (
     Augmend,
     AdditiveNoise,
@@ -251,7 +251,7 @@ class Custom:
         import tensorflow as tf
         from imageio import imread
 
-        from conic import predict
+        from .conic import predict
         from stardist.models import StarDist2D
         from stardist.plot import random_label_cmap, render_label
 
@@ -278,7 +278,7 @@ class Custom:
         import tensorflow as tf
         from imageio import imread
 
-        from conic import predict
+        from .conic import predict
         from stardist.models import StarDist2D
         from stardist.plot import random_label_cmap, render_label
 
@@ -287,7 +287,7 @@ class Custom:
 
         model = StarDist2D(None, name=name, basedir="./models")
 
-        from benchmark import matching_dataset
+        from .benchmark import matching_dataset
 
         pred_masks = self.predict_masks(X)
         # use correct threshold
