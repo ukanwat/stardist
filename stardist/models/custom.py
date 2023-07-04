@@ -295,7 +295,7 @@ class Custom:
             X, StarDist2D(None, name=name, basedir="./models")
         )
         # use correct threshold
-        matching_dataset(
+        result = matching_dataset(
             Y,
             pred_masks,
             thresh=thresh,
@@ -304,3 +304,4 @@ class Custom:
             show_progress=True,
             parallel=True,
         )
+        print(result)
