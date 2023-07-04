@@ -291,7 +291,9 @@ class Custom:
 
         from .benchmark import matching_dataset
 
-        pred_masks = self.predict_masks(X)
+        pred_masks = self.predict_masks(
+            X, StarDist2D(None, name=name, basedir="./models")
+        )
         # use correct threshold
         matching_dataset(
             Y,
