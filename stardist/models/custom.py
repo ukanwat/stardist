@@ -33,6 +33,7 @@ from augmend import (
 class Custom:
     def __init__(self):
         args = SimpleNamespace()
+        self.augmenter = None
 
         # data in
         args.datadir = "/content/drive/MyDrive/jrf/stardist/MoNuSAC/"
@@ -228,8 +229,10 @@ class Custom:
             def augmenter(x, y):
                 return aug([x, y])
 
+            self.augmenter = augmenter
+
         else:
-            augmenter = None
+            self.augmenter = None
 
         self.args.epochs = epochs
         Xv, Yv, Y0v, idxv = self.train_dataset(name, dir, config[0], config[1])
