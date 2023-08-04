@@ -44,7 +44,7 @@ class Custom:
         # /content/drive/MyDrive/jrf/stardist/MoNuSAC/
         args.oversample = True  # oversample training patches with rare classes
         args.frac_val = 0.1  # fraction of data used for validation during training
-        args.seed = None  # for reproducible train/val data sets
+        args.seed = 0  # for reproducible train/val data sets
         # model out (parameters as used for our challenge submissions)
         args.modeldir = "./models"
         args.epochs = 20
