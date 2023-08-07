@@ -197,6 +197,18 @@ class Custom:
         )
         return Xv, Yv, Y0v, idxv
 
+    def configure(self, modelname, dir, add_config, rep_config):
+        from stardist.models import base
+        self.args.datadir = dir
+        print('dataset dir: ',self.args.datadir) 
+        base.set_config_values(add_config, rep_config)
+        X, Y, D, Y0, idx = self.getdata(self.args.datadir)
+        X, Xv, Y, Yv, D, Dv, Y0, Y0v, idx, idxv = self.traintestsplit(X, Y, D, Y0, idx)
+        X, Y, D, Y0, idx, class_count = self.oversampleclasses(X, Y, D, Y0, idx)
+        class_weights = self.calcweights(class_count)
+        self.conf = self.setconf(class_weights.tolist(), X)
+
+    
     def train(self, name, dir, config, epochs):
         if self.args.augment:
             aug = Augmend()
