@@ -285,6 +285,21 @@ class Custom:
             pred_masks.append(u)
         return np.array(pred_masks)
 
+
+
+    def get_results(self, Y, pred_masks, thresh):
+        from .benchmark import matching_dataset
+        return matching_dataset(
+            Y,
+            pred_masks,
+            thresh=thresh,
+            criterion="iou",
+            by_image=False,
+            show_progress=True,
+            parallel=True,
+        )
+        
+
     def prediction(self, X, Y, name, thresh):
         import numpy as np
         import matplotlib.pyplot as plt
