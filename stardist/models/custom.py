@@ -179,6 +179,7 @@ class Custom:
         from stardist.models import base
 
         self.args.datadir = dir
+        print('dataset dir: ',self.args.datadir) 
         base.set_config_values(add_config, rep_config)
         X, Y, D, Y0, idx = self.getdata(self.args.datadir)
         X, Xv, Y, Yv, D, Dv, Y0, Y0v, idx, idxv = self.traintestsplit(X, Y, D, Y0, idx)
@@ -241,8 +242,8 @@ class Custom:
 
         # base.set_config_values([ [9, 10, 11, 12]]  ,[[2, 4, 8, 10, 11, 12]])
 
-    def optimise_threshold(self, Xv, Yv):
-        model = StarDist2D(self.conf, name="monusac", basedir=self.args.modeldir)
+    def optimise_threshold(self, Xv, Yv, modelname):
+        model = StarDist2D(self.conf, name=modelname, basedir=self.args.modeldir)
         model.optimize_thresholds(Xv, Yv, nms_threshs=[0.1, 0.2, 0.3])
 
     def predict_masks(self, images, model):
