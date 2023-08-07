@@ -330,3 +330,38 @@ class Custom:
             parallel=True,
         )
         print(result)
+
+    def get_pred(self, X, name):
+        import numpy as np
+        import matplotlib.pyplot as plt
+        
+        # %matplotlib inline
+        
+        import tensorflow as tf
+        from imageio import imread
+        
+        from .conic import predict
+        from stardist.models import StarDist2D
+        from stardist.plot import random_label_cmap, render_label
+        
+        np.random.seed(42)
+        cmap_random = random_label_cmap()
+        
+        model = StarDist2D(None, name=name, basedir="./models")
+        
+        from .benchmark import matching_dataset
+        
+        import time
+        
+        # starting time
+        start = time.time()
+        
+        pred_masks = self.predict_masks(
+            X, StarDist2D(None, name=name, basedir="./models")
+        )
+        
+        # starting time
+        end = time.time()
+        
+        print(f"time taken: {end - start}")
+        return pred_masks
