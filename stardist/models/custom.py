@@ -289,7 +289,7 @@ class Custom:
         np.random.seed(42)
         cmap_random = random_label_cmap()
 
-        model = StarDist2D(self.conf, name=name, basedir="./models")
+        model = StarDist2D(None, name=name, basedir="./models")
 
         from .benchmark import matching_dataset
 
@@ -299,7 +299,7 @@ class Custom:
         start = time.time()
 
         pred_masks = self.predict_masks(
-            X, StarDist2D(self.conf, name=name, basedir="./models")
+            X, StarDist2D(None, name=name, basedir="./models")
         )
 
         # starting time
