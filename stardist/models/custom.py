@@ -97,6 +97,7 @@ class Custom:
 
     def get_class_count(self, Y0):
         class_count = np.bincount(Y0[:, ::4, ::4, 1].ravel())
+        print("class_count: ",class_count)
         # Desired size
         desired_size = 13
 
@@ -105,8 +106,7 @@ class Custom:
 
         # Pad the array
         class_count = np.pad(class_count, (0, padding), mode="constant")
-
-        print(class_count.shape)
+        print("class_count: ",class_count)
 
         try:
             import pandas as pd
@@ -149,6 +149,7 @@ class Custom:
             class_weights = inv_freq.round(4)
         else:
             class_weights = np.ones(len(CLASS_NAMES))
+        print("class_weights: ",class_weights)
         return class_weights
 
     def setconf(self, weights, X):
