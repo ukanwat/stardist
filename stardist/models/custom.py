@@ -64,6 +64,11 @@ class Custom:
         )  # note: ignore potential scikit-tensor error
 
         vars(args)
+        # FOR DEMO PURPOSES ONLY: reduce model size and training time
+        args.epochs = 5
+        args.n_depth = 3
+        args.n_rays = 32
+        args.grid = (2, 2)
 
 
 
